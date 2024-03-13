@@ -11,8 +11,13 @@ class Flutter3DViewer extends StatefulWidget {
 
   final String src;
   final Flutter3DController? controller;
+  final Function? onViewCreated;
+  final String? fieldOfView;
+  final String? cameraOrbit;
+  final String? cameraTarget;
+  final bool autoPlay;
 
-  const Flutter3DViewer({Key? key,required this.src,this.controller,}) : super(key: key);
+  const Flutter3DViewer({super.key,required this.src,this.controller, this.onViewCreated, this.fieldOfView, this.cameraOrbit, this.cameraTarget, this.autoPlay=true});
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
@@ -42,15 +47,18 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
       id: _id,
       src: widget.src,
       relatedJs: _utils.injectedJS(),
+      fieldOfView: widget.fieldOfView,
+      cameraOrbit: widget.cameraOrbit,
+      cameraTarget: widget.cameraOrbit,
       ar: false,
-      autoPlay: false,
+      autoPlay: widget.autoPlay,
       autoRotate: false,
       debugLogging: false,
       interactionPrompt: InteractionPrompt.none,
-      onWebViewCreated: kIsWeb ? null : (WebViewController value) {
+      onWebViewCreated: kIsWeb ? null : (WebViewController value) async {
         _controller?.init(Flutter3DRepository(IFlutter3DDatasource(value)));
+        widget.onViewCreated?.call();
       },
     );
   }
-
 }

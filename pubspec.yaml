@@ -22,17 +22,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  android_intent_plus: ^4.0.2
+  android_intent_plus: ^4.0.3
   path: ^1.8.3
   url_launcher: ^6.1.0
-  webview_flutter: ^4.2.2
-  webview_flutter_android: ^3.0.0
-  webview_flutter_wkwebview: ^3.0.0
+  webview_flutter: ^4.5.0
+  webview_flutter_android: ^3.15.0
+  webview_flutter_wkwebview: ^3.10.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^3.0.1
 
 
 
